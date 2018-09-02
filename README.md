@@ -1,5 +1,5 @@
 # Image Colorization
-Gray-scale Image Colorization of low resolution images using a Conditional Deep Convolutional Generative Adversarial Network (DCGAN).*
+*Gray-scale Image Colorization of low resolution images using a Conditional Deep Convolutional Generative Adversarial Network (DCGAN).*
 This is a PyTorch implementation of the DCGAN as described in the paper [Image Colorization using
 Generative Adversarial Networks](https://arxiv.org/pdf/1803.05400.pdf).
 
@@ -22,6 +22,16 @@ The architecture of generator is inspired by U-Net: The architecture of the mode
 ![U-NET](images/unet.png)
 
 For discriminator, we use similar architecture as the baselines contractive path.
+
+## Setup
+1. Clone the source code and run `python3 train.py`. 
+
+* It begins by downloading the Cifar-10 train dataset in the `/data` directory. The Cifar-10 train dataset consists of 50,000 images distributed equally across 10 classes like  *plane*, *bird*, *cat*, *ship*, *truck* to name a few and each image is of resolution *32x32*. The images are PIL images in the range [0, 1]. The color space of the images is changed from RGB to CieLAB. Unlike RGB, CieLAB consists of an illuminance channel which entirely contains the brightness information and two chrominance channels which contain the enitre color information. This prevents any sudden variations in both color and
+brightness through small perturbations in intensity values that are experienced through RGB. Finally, a data loader is made over the transformed dataset.
+
+* Finally, training begins. The training is carried for 100 epochs and the generator and discriminator models are saved periodically in directories  `/cifar10_train_generator` and `/cifar10_train_discriminator` respectively. 
+
+2. To evaluate the model on the Cifar-10 test dataset, run `python3 eval.py`. It performs the evaluation on the entire test dataset and prints the mean absolute error(MAE: pixel-wise image distance between the source and the generated images) at the end. 
 
 ## Datasets
 CIFAR-10 is used as the dataset for training. To train the model on the full dataset, download dataset [here](https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz).
