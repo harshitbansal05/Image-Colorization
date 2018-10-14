@@ -1,7 +1,6 @@
 # Image Colorization
 *Gray-scale Image Colorization of low resolution images using a Conditional Deep Convolutional Generative Adversarial Network (DCGAN).*
-This is a PyTorch implementation of the DCGAN as described in the paper [Image Colorization using
-Generative Adversarial Networks](https://arxiv.org/pdf/1803.05400.pdf).
+This is a PyTorch implementation of the Conditional DCGAN(Deep Convolutional Generative Adversarial Networks).
 
 ## Prerequisites
 * Python 3.6
